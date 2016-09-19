@@ -1,0 +1,41 @@
+<div class="container">
+        <div class="row row-content" ng-controller="MenuController">
+            <div class="col-xs-12">
+              <button type="button" name="button" ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right">
+                {{showDetails ? 'Hide Details' : 'Show Details'}}
+              </button>
+              <ul class="nav nav-tabs" role="navigation">
+                <li role="presentation" ng-class="{active: isSelected(1)}">
+                  <a ng-click="select(1)" href="" aria-controls="all menu" role="tab">The Menu</a>
+                </li>
+                <li role="presentation" ng-class="{active: isSelected(2)}">
+                  <a ng-click="select(2)" href="" aria-controls="appetizers" role="tab">Appetizer</a>
+                </li>
+                <li role="presentation" ng-class="{active: isSelected(3)}">
+                  <a ng-click="select(3)" href="" aria-controls="mains">Mains</a>
+                </li>
+                <li role="presentation" ng-class="{active: isSelected(4)}">
+                  <a ng-click="select(4)" href="" aria-controls="dessert">Dessert</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <ul class="media-list tabe-pane fade in active" >
+                  <li class="media" ng-repeat="dish in dishes | filter: filtText">
+                    <div class="media-left media-middle">
+                      <a ui-sref="app.dishdetail({id: dish._id})">
+                        <img ng-src="{{dish.image}}" alt="Uthappizza" class="media-object img-thumbnail">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h2 class="media-heading">{{dish.name}} <span class="label label-danger label-xs">{{dish.label}}</span> <span class="badge">{{dish.price | currency}}</span></h2>
+                      <div ng-show="showDetails">
+                        <p>{{dish.description}}</p>
+                        <p><a href="#" class="btn btn-primary btn-xs">More &raquo;</a></p>
+                      </div>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
